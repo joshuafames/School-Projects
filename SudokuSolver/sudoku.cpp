@@ -213,7 +213,7 @@ int main(){
 	string svHouse[3][N]; ///SPECIAL VALUE EACH ROW, EACH COL, EACH BLOCK BY XOR
 	
 	ifstream iFile;
-	iFile.open("testInput.txt");
+	iFile.open("Input.txt");
 	for(int i = 0; i < gridsize;i++){
 		for(int j = 0; j < gridsize; j++){
 			sectors[i/N2][j/N2].set();
