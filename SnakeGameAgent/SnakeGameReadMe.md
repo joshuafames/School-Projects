@@ -36,7 +36,7 @@ When the game first starts, each agent is sent an initialisation string which sp
 
 At each step in the game, a game-state string is generated and sent to all agents, which can then be read in via standard input. Coordinates are such that (0,0) represents the top left square of the board. Each state takes the following form:
 
-
+```
 x- and y-coordinates of the apple
 obstacle 1 description
 obstacle 2 description
@@ -46,7 +46,7 @@ description of snake 0
 description of snake 1
 description of snake 2
 description of snake 3
-
+```
 Each obstacle is made up of pairs of xy-points (with a comma separating the x and y value). Each point is a location on the board where the obstacle exists.
 
 Each snake is described in the following format:
@@ -54,7 +54,7 @@ Each snake is described in the following format:
 alive/dead length kills headX,headY bodyX,bodyY bodyX,bodyY ... tailX,tailY
 To better describe what's going on here, let's look at a concrete example. Imagine that we receive the following game-state:
 
-
+```
 8 16
 30,21 29,21 28,21 27,21 26,21
 16,32 16,33 16,34 16,35 16,36
@@ -64,7 +64,7 @@ alive 26 2 10,12 15,12 15,7 5,7 5,2
 dead 6 6 14,13 19,13
 alive 2 1 12,13 12,14
 alive 17 1 31,14 21,14 15,14 15,13
-
+```
 In this state, the apple is at (8,16). The first obstacle runs from (30, 21) to (26, 21) in a straight line. Similarly, obstacle 2 runs from (16, 32) to (16, 36), and obstacle 3 runs from (47, 26) to (43, 26).
 
 The next line gives the index of our snake. In this case, we're snake 0, so we're the first one in the next four lines. If we were the last snake, we'd get an index of 3. The next four lines describe each snake in the game. The first word of each line is either "alive" or "dead". Dead snakes are not displayed on the game board, and so they should be ignored. Next comes the snake's current length, followed by the number of other snakes it has killed.
@@ -72,14 +72,15 @@ The next line gives the index of our snake. In this case, we're snake 0, so we'r
 What follows is the snake's coordinate chain. The coordinate chain is made up of (x,y) coordinates representing points of interest in the snake's body. The first coordinate is the snake's head, the next represents the first kink in the snake. There can be any number of kinks in the snake, all of which are all listed in order. Finally, the last coordinate represents the tail of the snake. As an example, the 3rd snake has the following description:
 
 Lastly the snake's coordinate chain is given.
-
+```
 alive 2 1 12,13 12,14
 This snake is alive, has length 2, and 1 kill. Its head is at position (12, 13) and its tail is at (12, 14). From this we can deduce that the snake is traveling upwards, since the y-coordinate of its head is less than its tail's.
-
+```
 ## Making a Move
 
 Once the game-state has been read in, your agent should use that information to decide on its next move. A move is made simply by printing out an integer in the range 0-6. The available moves are as follows:
 
+```
 0	Up (relative to the play area - north)
 1	Down (relative to the play area - south)
 2	Left (relative to the play area - west)
@@ -87,7 +88,7 @@ Once the game-state has been read in, your agent should use that information to 
 4	Left (relative to the head of your snake)
 5	Straight (relative to the head of your snake)
 6	Right (relative to the head of your snake)
-
+```
 Note that if you output a move that is opposite to the direction you're currently headed, you will simply continue straight.
 
 ## Logging
